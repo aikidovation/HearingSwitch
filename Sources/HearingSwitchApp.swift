@@ -32,9 +32,13 @@ struct MenuContent: View {
         Button("Open Accessibility Settings (Hearing Devices)…") { switcher.openHearingSettings() }
         Toggle("Start at Login", isOn: Binding(get: { switcher.startsAtLogin },
                                                set: { switcher.setStartsAtLogin($0) }))
+        Button("View on GitHub") { NSWorkspace.shared.open(Self.githubURL) }
         Divider()
         Button("Quit HearingSwitch") { NSApplication.shared.terminate(nil) }.keyboardShortcut("q")
     }
+
+    /// Project page. Opened from the menu; there is no in-app updater.
+    private static let githubURL = URL(string: "https://github.com/aikidovation/HearingSwitch")!
 
     private func check(_ output: AudioOutput?) -> String {
         output?.id == switcher.defaultID && output != nil ? "✓ " : "    "

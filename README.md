@@ -20,6 +20,7 @@ The menu-bar icon (an audio waveform) lets you:
 - Switch to the built-in speakers
 - Open Accessibility settings, where you can connect or disconnect hearing devices by hand
 - Start HearingSwitch at login
+- Open this project’s page on GitHub (**View on GitHub**)
 - Quit
 
 Switching sets both regular audio and alert sounds to the selected output.
