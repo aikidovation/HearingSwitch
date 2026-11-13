@@ -73,6 +73,24 @@ That writes an ad-hoc-signed Apple silicon app to `build/HearingSwitch.app`. Ope
 open build/HearingSwitch.app
 ```
 
+## App icon
+
+The bundle icon is original artwork: white rounded waveform bars on a blue rounded square (`Resources/AppIcon.icns`). It is not an SF Symbol. `build.sh` copies it into `Contents/Resources` before signing, so menu-bar managers can read it. The menu-bar item itself stays the system `waveform` symbol, drawn at runtime.
+
+<img src="Resources/icon-1024.png" width="128" alt="HearingSwitch app icon">
+
+To regenerate the icon on a Mac, from `tools/`:
+
+```bash
+cd tools
+xcrun swift make-icon.swift
+iconutil -c icns AppIcon.iconset -o AppIcon.icns
+cp AppIcon.icns ../Resources/AppIcon.icns
+cp icon-1024.png ../Resources/icon-1024.png
+```
+
+`make-icon.swift` writes `AppIcon.iconset` and a 1024 px preview in the current directory. `iconutil` packs that iconset into `AppIcon.icns`.
+
 ## Optional device override
 
 If automatic discovery picks the wrong Bluetooth output, you can save a specific Core Audio device UID:
